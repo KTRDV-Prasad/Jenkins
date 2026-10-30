@@ -2,12 +2,21 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['DEV', 'SYS', 'SYS2'],
+            description: 'Select the environment to execute the pipeline'
+        )
+    }
+
     stages {
 
         stage('Build') {
             steps {
                 echo 'Starting Build Stage'
-                echo 'Building Jenkins Pipeline'
+                echo "Selected Environment: ${params.ENVIRONMENT}"
+                echo "Building application for ${params.ENVIRONMENT}"
                 echo 'Build Completed Successfully'
             }
         }
@@ -15,7 +24,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Starting Test Stage'
-                echo 'Executing Basic Tests'
+                echo "Testing application in ${params.ENVIRONMENT}"
                 echo 'All Tests Passed Successfully'
             }
         }
@@ -23,7 +32,7 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline Executed Successfully!'
+            echo "Pipeline Executed Successfully for ${params.ENVIRONMENT}!"
         }
 
         failure {
