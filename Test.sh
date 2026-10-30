@@ -1,22 +1,24 @@
-@echo off
+#!/bin/bash
 
-echo ================================
-echo Jenkins Build Started
-echo ================================
+echo "================================"
+echo " Jenkins Freestyle Build Started"
+echo "================================"
 
-echo Current Date:
-date /t
+echo "Current Date:"
+date
 
-echo Current User:
+echo "Current User:"
 whoami
 
-echo Repository Files:
-dir
+echo "Current Directory:"
+pwd
 
-echo Executing Test.sh
+echo "Listing repository files:"
+ls -l
 
-bash Test.sh
+echo "Checking system information:"
+uname -a
 
-echo ================================
-echo Jenkins Build Completed
-echo ================================
+echo "================================"
+echo " Jenkins Build Completed Successfully"
+echo "================================"
